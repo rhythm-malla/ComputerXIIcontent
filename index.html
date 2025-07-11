@@ -121,6 +121,7 @@
         <ul>
             <li><button onclick="location.href='#index'">Index</button></li>
             <li><button onclick="location.href='#chapter1'">Chapter 1</button></li>
+                        <li><button onclick="location.href='#questions'">Questions</button></li>
             <li><button onclick="location.href='#chapter2'">Chapter 2</button></li>
             <li><button onclick="location.href='#chapter3'">Chapter 3</button></li>
             <li><button onclick="location.href='#chapter4'">Chapter 4</button></li>
@@ -455,8 +456,317 @@
     <li><strong>DATETIME:</strong> Stores date and time values.</li>
   </ul>
 </div>
+         <div id="questions"></div>
+  <h1 id="chapter1">DBMS Questions and Answers (2020-2024)</h1>
+  <ol>
+    <li>
+      <strong>What is Database and DBMS? List out the advantages and disadvantages of DBMS.</strong><br>
+      A database is an organized collection of data. DBMS (Database Management System) is software that manages databases.
+      <br><strong>Advantages:</strong> Reduces data redundancy, ensures data integrity, supports multi-user access, enables backup and recovery.<br>
+      <strong>Disadvantages:</strong> Expensive hardware/software, complex to manage, requires skilled personnel.
+    </li>
 
-                
+    <li>
+      <strong>Differentiate between file processing system and DBMS:</strong><br>
+      1. File system has data redundancy; DBMS reduces it.<br>
+      2. File system is application-dependent; DBMS is independent.<br>
+      3. File system has limited security; DBMS has better security.<br>
+      4. File system lacks backup/recovery; DBMS supports both.
+    </li>
+
+    <li>
+      <strong>Explain different models of DBMS with advantages and disadvantages:</strong><br>
+      - <strong>Hierarchical:</strong> Tree-like structure. Fast access but rigid.<br>
+      - <strong>Network:</strong> Many-to-many relations. Flexible but complex.<br>
+      - <strong>Relational:</strong> Uses tables. Easy to use and scalable but slower for complex data.<br>
+      - <strong>Object-Oriented:</strong> Supports objects. Good for complex apps but less mature.
+    </li>
+
+    <li>
+      <strong>What is a relational database? How is it different?</strong><br>
+      A relational database stores data in tables with rows and columns. It's different due to its use of primary/foreign keys and structured query language (SQL).
+    </li>
+
+    <li>
+      <strong>What is data redundancy? How does DBMS help in reducing it?</strong><br>
+      Data redundancy is the duplication of data. DBMS reduces it by using normalization and shared access to a central database.
+    </li>
+
+    <li>
+      <strong>Differentiate between centralized and distributed database systems:</strong><br>
+      - Centralized: Data stored in one location. Easier to manage but less fault-tolerant.<br>
+      - Distributed: Data distributed over multiple locations. More reliable but complex.
+    </li>
+
+    <li>
+      <strong>Who is DBA? Responsibilities?</strong><br>
+      DBA (Database Administrator) manages and maintains the database.<br>
+      Responsibilities: Installation, configuration, backup, recovery, security, performance tuning.
+    </li>
+
+    <li>
+      <strong>Define normalization. Explain 1NF, 2NF, 3NF:</strong><br>
+      Normalization is the process of organizing data to reduce redundancy.<br>
+      - <strong>1NF:</strong> No repeating groups. Example: Separate multiple phone numbers into rows.<br>
+      - <strong>2NF:</strong> Remove partial dependencies. Every non-key attribute depends on whole primary key.<br>
+      - <strong>3NF:</strong> Remove transitive dependencies. Non-key attributes should not depend on other non-key attributes.
+    </li>
+
+    <li>
+      <strong>Explain primary key, foreign key, candidate key:</strong><br>
+      - <strong>Primary key:</strong> Unique identifier (e.g., StudentID).<br>
+      - <strong>Foreign key:</strong> Refers to primary key in another table.<br>
+      - <strong>Candidate key:</strong> All possible keys that can become primary.
+    </li>
+
+    <li>
+      <strong>What is SQL? Explain components and functions:</strong><br>
+      SQL (Structured Query Language) is used to interact with databases.<br>
+      - <strong>Components:</strong> DDL, DML, DCL, TCL.<br>
+      - <strong>Functions:</strong> SELECT, INSERT, UPDATE, DELETE, JOINs, etc.
+    </li>
+
+  <h2>SQL Code Example with Database and Multiple Insertions</h2>
+  <pre><code>
+Create the table
+CREATE TABLE students (
+  Id INT PRIMARY KEY,
+  Name VARCHAR(50),
+  Class VARCHAR(20),
+  Marks INT
+);
+<img src="1.1.png">
+Insert records into the table
+INSERT INTO students VALUES (1, 'Anita', 'XI', 78);
+INSERT INTO students VALUES (2, 'Sita', 'XI', 83);
+INSERT INTO students VALUES (3, 'Bikash', 'XI', 67);
+INSERT INTO students VALUES (4, 'Prakash', 'XI', 90);
+INSERT INTO students VALUES (5, 'Laxmi', 'XI', 75);
+<img src="1.2.png">
+
+Display all records
+SELECT * FROM students;
+<img src="1.3.png">
+Update marks of student named 'Anita'
+UPDATE students SET Marks = 85 WHERE Name = 'Anita';
+<img src="1.4.png">
+<img src="1.4.1.png">
+Delete record of student with id = 3
+DELETE FROM students WHERE Id = 3;</code></pre>
+
+    <li>
+      <strong>Define the following terms:</strong>
+      <ol type="a">
+        <li><strong>Data Dictionary:</strong> Metadata about database structure.</li>
+        <li><strong>Primary Key:</strong> Unique column identifying a record.</li>
+        <li><strong>Relationship:</strong> Association between tables using keys.</li>
+        <li><strong>DML:</strong> Data Manipulation Language (e.g., SELECT, INSERT).</li>
+        <li><strong>SQL:</strong> Language to manage and query databases.</li>
+        <li><strong>Data Integrity:</strong> Accuracy and consistency of data.</li>
+        <li><strong>DDL:</strong> Data Definition Language (e.g., CREATE, ALTER).</li>
+        <li><strong>Data Security:</strong> Protecting data from unauthorized access.</li>
+        <li><strong>Database System:</strong> The database + DBMS software + users + applications.</li>
+      </ol>
+    </li>
+  </ol>
+
+    <h1>Unit 2 – C Programming</h1>
+  <ol>
+    <li>
+      <strong>Working with a function:</strong>
+      <ol type="a">
+        <li><strong>Define function:</strong> A function is a block of code that performs a specific task and can be reused.</li>
+        <li><strong>Syntax of functions:</strong><br>
+          <code>return_type function_name(parameters) { //code }</code>
+        </li>
+        <li><strong>Types of functions:</strong><br>
+          - <strong>Library Functions:</strong> Predefined (e.g., <code>printf()</code>, <code>scanf()</code>)<br>
+          - <strong>User Defined Functions:</strong> Created by users for specific tasks
+        </li>
+        <li><strong>Components of function:</strong>
+          <ol type="i">
+            <li><strong>Function prototype:</strong> Declaration (e.g., <code>int add(int, int);</code>)</li>
+            <li><strong>Function call:</strong> Usage (e.g., <code>add(2, 3);</code>)</li>
+            <li><strong>Function definition:</strong> Body (e.g., <code>int add(int a, int b) { return a + b; }</code>)</li>
+            <li><strong>Return type:</strong> Specifies what type of value function returns (e.g., <code>int</code>, <code>void</code>)</li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+
+    <li>
+      <strong>Categories of function with example:</strong>
+      <ol type="i">
+        <li><strong>Function with return type but no arguments:</strong>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int getValue() {
+  int value = 42;
+  printf("Inside getValue function...\n");
+  return value;
+}
+
+int main() {
+  printf("Calling getValue()...\n");
+  int result = getValue();
+  printf("The value is: %d\n", result);
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+        </li>
+         <img src="2.1.png">
+        <li><strong>Function with return type with arguments:</strong>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int multiply(int a, int b) {
+  printf("Multiplying %d and %d...\n", a, b);
+  int product = a * b;
+  return product;
+}
+
+int main() {
+  int x = 6, y = 7;
+  printf("Calling multiply(%d, %d)...\n", x, y);
+  int result = multiply(x, y);
+  printf("Product: %d\n", result);
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+        </li>         <img src="2.2.png">
+        <li><strong>Function with no return type with no arguments:</strong>
+          <pre><code>#include &lt;stdio.h&gt;
+
+void greet() {
+  printf("Welcome to C Programming!\n");
+  printf("This is a simple greeting message.\n");
+}
+
+int main() {
+  printf("Calling greet()...\n");
+  greet();
+  printf("greet() function executed.\n");
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+        </li>         <img src="2.3.png">
+        <li><strong>Function with no return type with arguments:</strong>
+          <pre><code>#include &lt;stdio.h&gt;
+
+void displaySum(int x, int y) {
+  int sum = x + y;
+  printf("Calculating sum of %d and %d...\n", x, y);
+  printf("The sum is: %d\n", sum);
+}
+
+int main() {
+  int a = 12, b = 8;
+  printf("Calling displaySum(%d, %d)...\n", a, b);
+  displaySum(a, b);
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+        </li>
+      </ol>
+    </li>
+         <img src="2.4.png">
+    <li>
+      <strong>Storage classes:</strong>
+      <p>In C, storage classes define the scope (visibility) and lifetime of variables and/or functions within a C Program. The four types of storage classes are:</p>
+      <ul>
+        <li><strong>Automatic:</strong> Default for all local variables. Declared inside a block or function. Keyword: <code>auto</code>.</li>
+        <li><strong>External:</strong> Used to declare global variables accessible across multiple files. Keyword: <code>extern</code>.</li>
+        <li><strong>Register:</strong> Stores variables in CPU registers for faster access. Keyword: <code>register</code>.</li>
+        <li><strong>Static:</strong> Retains the value of a variable across function calls. Keyword: <code>static</code>.</li>
+      </ul>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int globalVar = 100; // external storage
+
+void demoStatic() {
+  static int counter = 0;
+  counter++;
+  printf("Static counter: %d\n", counter);
+}
+
+void demoRegister() {
+  register int speed = 20;
+  printf("Register speed: %d\n", speed);
+}
+
+void demoAuto() {
+  auto int localValue = 10;
+  printf("Automatic variable: %d\n", localValue);
+}
+
+int main() {
+  printf("Global variable: %d\n", globalVar);
+  demoStatic();
+  demoStatic();
+  demoRegister();
+  demoAuto();
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+    </li>
+         <img src="3.png">
+    <li>
+      <strong>Recursive function with syntax and examples:</strong><br>
+      <p><strong>Syntax:</strong></p>
+      <pre><code>return_type function_name(parameters) {
+  if (base_condition) {
+    return base_value;
+  } else {
+    return recursive_case;
+  }
+}</code></pre>
+      <p><strong>Example:</strong></p>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int factorial(int n) {
+  if(n <= 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+int main() {
+  int number = 5;
+  printf("Finding factorial of %d...\n", number);
+  int result = factorial(number);
+  printf("Factorial of %d is %d\n", number, result);
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+    </li>
+         <img src="4.png">
+    <li>
+      <strong>Demonstration of passing array to a function:</strong>
+      <p>The following program demonstrates passing an array to a function, calculating the average of the elements:</p>
+      <pre><code>#include &lt;stdio.h&gt;
+
+float calculateAverage(int arr[], int size) {
+  int sum = 0;
+  for (int i = 0; i &lt; size; i++) {
+    sum += arr[i];
+  }
+  return (float)sum / size;
+}
+
+int main() {
+  int numbers[] = {10, 20, 30, 40, 50};
+  int size = sizeof(numbers) / sizeof(numbers[0]);
+  printf("Passing array to function...\n");
+  float avg = calculateAverage(numbers, size);
+  printf("Average = %.2f\n", avg);
+  printf("Executed by Rhythm Malla 948\n");
+  return 0;
+}</code></pre>
+    </li>
+     <img src="5.png">      
+  </ol>
+        <strong>6. Past Year Questions of Functions (2020-2024 and Model Questions)</strong>
+         
         </div>
     </div>
     </div>
