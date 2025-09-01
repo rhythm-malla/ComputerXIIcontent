@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -455,6 +456,129 @@
     <li><strong>DATE:</strong> Stores calendar dates (year, month, day).</li>
     <li><strong>DATETIME:</strong> Stores date and time values.</li>
   </ul>
+
+<h1>SQL JOINs Explained</h1>
+
+<p>In SQL, <strong>JOIN</strong> operations combine rows from two or more tables based on a related column between them. The main types of JOINs are:</p>
+
+<ul>
+    <li><strong>INNER JOIN</strong></li>
+    <li><strong>LEFT JOIN</strong> (or LEFT OUTER JOIN)</li>
+    <li><strong>RIGHT JOIN</strong> (or RIGHT OUTER JOIN)</li>
+    <li><strong>FULL JOIN</strong> (or FULL OUTER JOIN)</li>
+</ul>
+
+<h2>Sample Tables</h2>
+
+<p>Consider the following two tables:</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <caption><strong>Table: Employees</strong></caption>
+    <thead>
+        <tr><th>EmployeeID</th><th>Name</th><th>DeptID</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Alice</td><td>10</td></tr>
+        <tr><td>2</td><td>Bob</td><td>20</td></tr>
+        <tr><td>3</td><td>Charlie</td><td>30</td></tr>
+        <tr><td>4</td><td>David</td><td>null</td></tr>
+    </tbody>
+</table>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <caption><strong>Table: Departments</strong></caption>
+    <thead>
+        <tr><th>DeptID</th><th>DeptName</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>10</td><td>HR</td></tr>
+        <tr><td>20</td><td>IT</td></tr>
+        <tr><td>40</td><td>Finance</td></tr>
+    </tbody>
+</table>
+
+<h2>1. INNER JOIN</h2>
+<p>Returns only the rows where there is a match in both tables.</p>
+
+<pre><code>SELECT Employees.Name, Departments.DeptName
+FROM Employees
+INNER JOIN Departments ON Employees.DeptID = Departments.DeptID;
+</code></pre>
+
+<p><strong>Result:</strong></p>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr><th>Name</th><th>DeptName</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Alice</td><td>HR</td></tr>
+        <tr><td>Bob</td><td>IT</td></tr>
+    </tbody>
+</table>
+
+<h2>2. LEFT JOIN (LEFT OUTER JOIN)</h2>
+<p>Returns all rows from the left table (Employees), and matched rows from the right table (Departments). If no match, NULLs for the right table columns.</p>
+
+<pre><code>SELECT Employees.Name, Departments.DeptName
+FROM Employees
+LEFT JOIN Departments ON Employees.DeptID = Departments.DeptID;
+</code></pre>
+
+<p><strong>Result:</strong></p>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr><th>Name</th><th>DeptName</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Alice</td><td>HR</td></tr>
+        <tr><td>Bob</td><td>IT</td></tr>
+        <tr><td>Charlie</td><td>null</td></tr>
+        <tr><td>David</td><td>null</td></tr>
+    </tbody>
+</table>
+
+<h2>3. RIGHT JOIN (RIGHT OUTER JOIN)</h2>
+<p>Returns all rows from the right table (Departments), and matched rows from the left table (Employees). If no match, NULLs for the left table columns.</p>
+
+<pre><code>SELECT Employees.Name, Departments.DeptName
+FROM Employees
+RIGHT JOIN Departments ON Employees.DeptID = Departments.DeptID;
+</code></pre>
+
+<p><strong>Result:</strong></p>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr><th>Name</th><th>DeptName</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Alice</td><td>HR</td></tr>
+        <tr><td>Bob</td><td>IT</td></tr>
+        <tr><td>null</td><td>Finance</td></tr>
+    </tbody>
+</table>
+
+<h2>4. FULL JOIN (FULL OUTER JOIN)</h2>
+<p>Returns all rows when there is a match in one of the tables. Rows without a match in either table will contain NULLs in place of missing columns.</p>
+
+<pre><code>SELECT Employees.Name, Departments.DeptName
+FROM Employees
+FULL OUTER JOIN Departments ON Employees.DeptID = Departments.DeptID;
+</code></pre>
+
+<p><strong>Result:</strong></p>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr><th>Name</th><th>DeptName</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Alice</td><td>HR</td></tr>
+        <tr><td>Bob</td><td>IT</td></tr>
+        <tr><td>Charlie</td><td>null</td></tr>
+        <tr><td>David</td><td>null</td></tr>
+        <tr><td>null</td><td>Finance</td></tr>
+    </tbody>
+</table>
+
 </div>
          <div id="questions"></div>
   <h1 id="chapter1">DBMS Questions and Answers (2020-2024)</h1>
@@ -570,7 +694,7 @@ DELETE FROM students WHERE Id = 3;</code></pre>
     </li>
   </ol>
 
-    <h1>Unit 2 – C Programming</h1>
+    <h1 id="chapter2">Unit 2 – C Programming</h1>
   <ol>
     <li>
       <strong>Working with a function:</strong>
@@ -593,7 +717,37 @@ DELETE FROM students WHERE Id = 3;</code></pre>
         </li>
       </ol>
     </li>
+    <li>
+  <h2>Variable and Its Scope in C Programming</h2>
+  <p>In C programming, the <strong>scope</strong> of a variable determines where that variable is accessible within the code. There are two primary scopes for variables:</p>
 
+  <h3>1. Local Variables</h3>
+  <p>Local variables are declared inside a function or a block and can only be accessed within that function or block. They are created when the function is called and destroyed when the function exits.</p>
+
+  <pre><code>void func() {
+    int localVar = 10;  // Local variable
+    printf("%d\n", localVar);
+  }</code></pre>
+
+  <p>Here, <code>localVar</code> is accessible only inside <code>func()</code>. Trying to use it outside the function will cause an error.</p>
+
+  <h3>2. Global Variables</h3>
+  <p>Global variables are declared outside all functions, usually at the top of the program file. They can be accessed and modified by any function within the file.</p>
+
+  <pre><code>int globalVar = 20;  // Global variable
+
+void func() {
+    printf("%d\n", globalVar);  // Access global variable
+}
+
+int main() {
+    func();
+    return 0;
+}</code></pre>
+
+  <p>Global variables exist for the lifetime of the program and are visible to all functions after their declaration.</p>
+
+</li>
     <li>
       <strong>Categories of function with example:</strong>
       <ol type="i">
@@ -738,6 +892,23 @@ int main() {
   printf("Executed by Rhythm Malla 948\n");
   return 0;
 }</code></pre>
+
+<h2>Advantages and Disadvantages of Recursive Functions</h2>
+
+  <h3>Advantages</h3>
+  <ul>
+    <li><strong>Simpler and Cleaner Code:</strong> Recursion can make complex problems easier to solve and understand by breaking them down into smaller subproblems.</li>
+    <li><strong>Elegant Solutions for Problems with Recursive Structure:</strong> Problems like tree traversals, factorial calculation, and the Fibonacci sequence are naturally suited for recursion.</li>
+    <li><strong>Reduces Code Size:</strong> Recursive solutions often require fewer lines of code compared to iterative solutions.</li>
+  </ul>
+
+  <h3>Disadvantages</h3>
+  <ul>
+    <li><strong>Higher Memory Usage:</strong> Each recursive call adds a new layer to the call stack, which can lead to increased memory consumption.</li>
+    <li><strong>Slower Performance:</strong> Recursive functions may be less efficient due to the overhead of multiple function calls.</li>
+    <li><strong>Risk of Stack Overflow:</strong> Deep or infinite recursion can exhaust the call stack, causing the program to crash.</li>
+    <li><strong>Sometimes Harder to Debug:</strong> Tracing recursive calls can be challenging, especially if the recursion is complex or not well understood.</li>
+  </ul>
     </li>
          <img src="4.png">
     <li>
@@ -765,9 +936,393 @@ int main() {
     </li>
      <img src="5.png">      
   </ol>
-        <strong>6. Past Year Questions of Functions (2020-2024 and Model Questions)</strong>
-         
-        </div>
+    <h2>Structure and Union in C Programming</h2>
+
+  <h3>Structure</h3>
+  
+  <h4>Introduction and Syntax</h4>
+  <p>A <strong>structure</strong> in C is a user-defined data type that groups different variables under one name. It allows combining data items of different kinds.</p>
+  <pre><code>struct StructureName {
+    data_type member1;
+    data_type member2;
+    // more members
+};</code></pre>
+
+  <h4>Structure Size</h4>
+  <p>The size of a structure is at least the sum of the sizes of its members. However, padding may be added by the compiler for alignment purposes.</p>
+
+  <h4>Accessing Members of Structure</h4>
+  <pre><code>struct Point {
+    int x;
+    int y;
+};
+
+int main() {
+    struct Point p1;
+    p1.x = 10;
+    p1.y = 20;
+    printf("X = %d, Y = %d\n", p1.x, p1.y);
+    return 0;
+}</code></pre>
+
+  <h4>Nested Structure</h4>
+  <pre><code>struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Student {
+    char name[50];
+    struct Date dob;  // Nested structure
+};
+
+int main() {
+    struct Student s1 = { "Alice", {15, 8, 2000} };
+    printf("Name: %s, DOB: %d/%d/%d\n", s1.name, s1.dob.day, s1.dob.month, s1.dob.year);
+    return 0;
+}</code></pre>
+
+  <h4>Array of Structure</h4>
+  <pre><code>struct Point {
+    int x;
+    int y;
+};
+
+int main() {
+    struct Point points[3] = {{1,2}, {3,4}, {5,6}};
+    for(int i = 0; i < 3; i++) {
+        printf("Point %d: (%d, %d)\n", i+1, points[i].x, points[i].y);
+    }
+    return 0;
+}</code></pre>
+
+  <h4>Passing Structure to Function</h4>
+  <pre><code>struct Point {
+    int x;
+    int y;
+};
+
+void printPoint(struct Point p) {
+    printf("Point: (%d, %d)\n", p.x, p.y);
+}
+
+int main() {
+    struct Point p1 = {10, 20};
+    printPoint(p1);
+    return 0;
+}</code></pre>
+
+  <hr>
+
+  <h3>Union</h3>
+
+  <h4>Introduction and Syntax</h4>
+  <p>A <strong>union</strong> is similar to a structure but shares the same memory location for all its members. Only one member can contain a value at a time.</p>
+  <pre><code>union UnionName {
+    data_type member1;
+    data_type member2;
+    // more members
+};</code></pre>
+
+  <h4>Comparison between Structure and Union</h4>
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Structure</th>
+        <th>Union</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Memory Allocation</td>
+        <td>Allocates separate memory for each member.</td>
+        <td>All members share the same memory location.</td>
+      </tr>
+      <tr>
+        <td>Size</td>
+        <td>Sum of sizes of all members (plus padding).</td>
+        <td>Size of the largest member.</td>
+      </tr>
+      <tr>
+        <td>Usage</td>
+        <td>Stores multiple values simultaneously.</td>
+        <td>Stores one value at a time.</td>
+      </tr>
+      <tr>
+        <td>Access</td>
+        <td>All members can be accessed independently.</td>
+        <td>Only one member can hold a valid value at a time.</td>
+      </tr>
+      <tr>
+        <td>Typical Use Cases</td>
+        <td>When grouping related data of different types.</td>
+        <td>When saving memory and storing one of several possible values.</td>
+      </tr>
+    </tbody>
+  </table>
+      <h2>Pointers in C Programming</h2>
+
+  <h3>Introduction and Syntax</h3>
+  <p>A <strong>pointer</strong> is a variable that stores the memory address of another variable. It "points" to the location in memory where the data is stored.</p>
+  <pre><code>data_type *pointer_name;</code></pre>
+  <p>Example:</p>
+  <pre><code>int *p;</code></pre>
+
+  <h3>Usage and Working</h3>
+  <p>Pointers are used for dynamic memory allocation, arrays, strings, and to efficiently pass large structures or arrays to functions.</p>
+  <p>They allow indirect access to variables and enable functions to modify variables outside their scope.</p>
+
+  <h3>Concept of Value and Address</h3>
+  <ul>
+    <li><strong>Value:</strong> The actual data stored in a variable.</li>
+    <li><strong>Address:</strong> The location in memory where the data is stored.</li>
+  </ul>
+  <p>Example:</p>
+  <pre><code>int a = 10;
+int *p = &a;  // &a gives the address of variable a
+printf("Value of a = %d\n", *p);  // Dereferencing pointer to get value
+printf("Address of a = %p\n", p);  // Printing address stored in pointer</code></pre>
+
+  <h3>Declaration and Initialization</h3>
+  <pre><code>int a = 5;
+int *p = &a;  // p holds address of a</code></pre>
+
+  <h3>Pointer and Function</h3>
+  <p>Passing pointers to functions allows modifying the actual variables.</p>
+  <pre><code>void increment(int *ptr) {
+    (*ptr)++;  // Increment the value at the address ptr points to
+}
+
+int main() {
+    int num = 10;
+    increment(&num);
+    printf("Incremented value: %d\n", num);  // Outputs 11
+    return 0;
+}</code></pre>
+
+  <h3>Call by Reference</h3>
+  <p>Call by reference passes the address of a variable to the function, allowing it to modify the original variable.</p>
+  <pre><code>void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int main() {
+    int a = 5, b = 10;
+    swap(&a, &b);
+    printf("a = %d, b = %d\n", a, b);  // Outputs: a = 10, b = 5
+    return 0;
+}</code></pre>
+
+  <h3>Comparison between Call by Value and Call by Reference</h3>
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Call by Value</th>
+        <th>Call by Reference</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Parameter Passing</td>
+        <td>Copies the value of the argument to the parameter.</td>
+        <td>Passes the address of the argument.</td>
+      </tr>
+      <tr>
+        <td>Effect on Original Variable</td>
+        <td>Original variable is not modified.</td>
+        <td>Original variable can be modified.</td>
+      </tr>
+      <tr>
+        <td>Memory Usage</td>
+        <td>Uses extra memory to copy values.</td>
+        <td>More efficient as no copying is done.</td>
+      </tr>
+      <tr>
+        <td>Use Case</td>
+        <td>When original data should remain unchanged.</td>
+        <td>When function needs to modify caller’s data.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Pointer with Arrays</h3>
+  <p>Arrays and pointers are closely related in C. The name of an array acts like a pointer to its first element.</p>
+  <pre><code>int arr[3] = {10, 20, 30};
+int *p = arr;  // Points to arr[0]
+
+for(int i = 0; i < 3; i++) {
+    printf("%d ", *(p + i));  // Access array elements using pointer arithmetic
+}
+// Output: 10 20 30</code></pre>
+
+  <h3>Advantages and Disadvantages</h3>
+  <h4>Advantages</h4>
+  <ul>
+    <li>Efficient access to memory and arrays.</li>
+    <li>Allows dynamic memory management.</li>
+    <li>Enables functions to modify variables by reference.</li>
+    <li>Useful in implementing complex data structures (linked lists, trees).</li>
+  </ul>
+
+  <h4>Disadvantages</h4>
+  <ul>
+    <li>Complex syntax can be confusing for beginners.</li>
+    <li>Incorrect pointer use can cause runtime errors and crashes.</li>
+    <li>Poor pointer management may lead to memory leaks.</li>
+    <li>Debugging pointer-related bugs is often difficult.</li>
+  </ul>
+
+  <div>
+  <h2>File Handling in C Programming</h2>
+
+  <h3>Concept of Data File</h3>
+  <p>A <strong>data file</strong> is a collection of related data stored on a secondary storage device such as a hard drive. Files allow data to be stored permanently and retrieved later.</p>
+
+  <h3>Need for File Handling</h3>
+  <p>File handling allows programs to:</p>
+  <ul>
+    <li>Store data permanently beyond the lifetime of a program.</li>
+    <li>Read data from or write data to files for later use.</li>
+    <li>Manage large amounts of data efficiently.</li>
+    <li>Share data between different programs.</li>
+  </ul>
+
+  <h3>Sequential and Random Files</h3>
+  <ul>
+    <li><strong>Sequential Files:</strong> Data is processed in a linear sequence, one record after another from beginning to end.</li>
+    <li><strong>Random (Direct) Files:</strong> Data can be accessed at any location directly without reading through all preceding data.</li>
+  </ul>
+
+  <h3>File Handling Functions</h3>
+  <p>Below are common file handling functions in C, along with their purpose and syntax:</p>
+
+  <h4>1. <code>fopen()</code> and <code>fclose()</code></h4>
+  <p><code>fopen()</code> opens a file and returns a pointer to a <code>FILE</code> object. <code>fclose()</code> closes the file.</p>
+  <pre><code>FILE *fopen(const char *filename, const char *mode);
+int fclose(FILE *stream);</code></pre>
+  <p><em>Modes example:</em> "r" (read), "w" (write), "a" (append), "rb" (read binary), etc.</p>
+
+  <h4>2. <code>getc()</code> and <code>putc()</code></h4>
+  <p>Read and write a single character to/from a file.</p>
+  <pre><code>int getc(FILE *stream);
+int putc(int char, FILE *stream);</code></pre>
+
+  <h4>3. <code>fprintf()</code> and <code>fscanf()</code></h4>
+  <p>Formatted output/input to/from a file, similar to <code>printf</code> and <code>scanf</code>.</p>
+  <pre><code>int fprintf(FILE *stream, const char *format, ...);
+int fscanf(FILE *stream, const char *format, ...);</code></pre>
+
+  <h4>4. <code>getw()</code> and <code>putw()</code></h4>
+  <p>Read and write an integer from/to a file (note: not portable, use with caution).</p>
+  <pre><code>int getw(FILE *stream);
+int putw(int w, FILE *stream);</code></pre>
+
+  <h4>5. <code>fgets()</code> and <code>fputs()</code></h4>
+  <p>Read/write a string (line) from/to a file.</p>
+  <pre><code>char *fgets(char *str, int n, FILE *stream);
+int fputs(const char *str, FILE *stream);</code></pre>
+
+  <h4>6. <code>fread()</code> and <code>fwrite()</code></h4>
+  <p>Read/write blocks of data (binary) from/to a file.</p>
+  <pre><code>size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);</code></pre>
+
+  <h4>7. <code>remove()</code> and <code>rename()</code></h4>
+  <p>Delete or rename a file.</p>
+  <pre><code>int remove(const char *filename);
+int rename(const char *oldname, const char *newname);</code></pre>
+
+  <h3>Random Access Functions</h3>
+  <p>These functions allow manipulating the file position indicator for random access to files:</p>
+
+  <h4><code>fseek()</code></h4>
+  <p>Sets the file position to a specific location.</p>
+  <pre><code>int fseek(FILE *stream, long int offset, int origin);</code></pre>
+  <p><em>Parameters:</em></p>
+  <ul>
+    <li><code>offset</code>: Number of bytes to move the position indicator.</li>
+    <li><code>origin</code>: Position from which offset is added. It can be:</li>
+    <ul>
+      <li><code>SEEK_SET</code> - Beginning of file</li>
+      <li><code>SEEK_CUR</code> - Current position</li>
+      <li><code>SEEK_END</code> - End of file</li>
+    </ul>
+  </ul>
+
+  <h4><code>rewind()</code></h4>
+  <p>Sets the file position to the beginning of the file (equivalent to <code>fseek(stream, 0, SEEK_SET)</code>).</p>
+  <pre><code>void rewind(FILE *stream);</code></pre>
+
+  <h4><code>ftell()</code></h4>
+  <p>Returns the current position of the file pointer.</p>
+  <pre><code>long int ftell(FILE *stream);</code></pre>
+
+</div>
+
+<div>
+  <h2>File Opening Modes in C</h2>
+
+  <h3>Read Modes</h3>
+  <ul>
+    <li><code>r</code>: Opens a file for reading. The file must exist.</li>
+    <li><code>r+</code>: Opens a file for both reading and writing. The file must exist.</li>
+  </ul>
+
+  <h3>Write Modes</h3>
+  <ul>
+    <li><code>w</code>: Opens a file for writing. If the file exists, its content is erased. If the file does not exist, it is created.</li>
+    <li><code>w+</code>: Opens a file for both reading and writing. If the file exists, it is truncated. Otherwise, a new file is created.</li>
+  </ul>
+
+  <h3>Append Modes</h3>
+  <ul>
+    <li><code>a</code>: Opens a file for writing in append mode. Data is added at the end of the file. If the file does not exist, it is created.</li>
+    <li><code>a+</code>: Opens a file for both reading and writing in append mode. Writes are always at the end, but reading can be anywhere. Creates file if it does not exist.</li>
+  </ul>
+
+  <h2>Steps to Work with Files in C</h2>
+  <ol>
+    <li><strong>Define a File Pointer:</strong> Declare a variable of type <code>FILE *</code>.</li>
+    <li><strong>Open the File with Required Mode:</strong> Use <code>fopen()</code> to open the file.</li>
+    <li><strong>Perform Read, Write, or Append Operations:</strong> Use appropriate functions like <code>fgetc()</code>, <code>fputc()</code>, <code>fread()</code>, <code>fwrite()</code>, etc.</li>
+    <li><strong>Close the File:</strong> Use <code>fclose()</code> to close the file and free resources.</li>
+  </ol>
+
+  <h3>Reading Data from Files</h3>
+  <p>Use functions like <code>fgetc()</code>, <code>fgets()</code>, <code>fread()</code>, or <code>fscanf()</code> to read data from files.</p>
+
+  <h3>Writing Data to Files</h3>
+  <p>Use functions like <code>fputc()</code>, <code>fputs()</code>, <code>fwrite()</code>, or <code>fprintf()</code> to write data to files.</p>
+
+  <h3>Appending Data to Files</h3>
+  <p>Open the file in append mode (<code>a</code> or <code>a+</code>) to add data at the end without overwriting existing content.</p>
+
+  <h3>End of File (EOF)</h3>
+  <p><code>EOF</code> is a macro defined in <code>stdio.h</code> indicating the end of a file. Reading functions return <code>EOF</code> when the end is reached.</p>
+  <pre><code>int ch;
+while ((ch = fgetc(filePtr)) != EOF) {
+    putchar(ch);
+}</code></pre>
+
+  <h2><code>typedef</code> Keyword in C</h2>
+  <p><code>typedef</code> allows you to create new names (aliases) for existing data types, making code more readable and easier to manage.</p>
+  <pre><code>typedef unsigned int uint;
+
+uint age = 25;</code></pre>
+  <p>It is commonly used to simplify complex types such as structures:</p>
+  <pre><code>typedef struct {
+    int x;
+    int y;
+} Point;
+
+Point p1 = {10, 20};</code></pre>
+</div>
+      
     </div>
     </div>
 </body>
